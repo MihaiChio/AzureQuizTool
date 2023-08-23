@@ -1,0 +1,63 @@
+﻿@using AzureWebLearningTool.Models
+@model AzureWebLearningTool.Models.Question
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<div class="sticky-top">
+    <div class="card" style="width: auto;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Text</h5>
+                @foreach (Choice choice in Model.Choices)
+                {
+                <div class="form-check-@Model.Id" id="form-@choice.isAnswer">
+                    <input class="form-check-input-@Model.Id" type="checkbox" value="@choice.isAnswer" id="flexCheckChecked" onchange="checkFunc(@Model.Id)">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        @choice.text
+                    </label>
+                </div>
+                }
+    
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#explanation-@Model.Id">
+                    Show Explanation
+                </button>
+    
+                <!-- Modal -->
+                <div class="modal fade" id="explanation-@Model.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ...mm
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function checkFunc(choiceId) {
+        var uncheckedElements = document.getElementsByClassName("form-check-"+choiceId);
+
+        for(let i = 0; i < uncheckedElements.length; i++)
+        {
+            uncheckedElements[i].firstElementChild.disabled = true;
+        }
+    }
+</script>

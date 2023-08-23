@@ -1,0 +1,66 @@
+﻿@model AzureWebLearningTool.Models.Exam
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<header>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</header>
+<style>
+    
+</style>
+
+
+<h1>@Model.Name</h1>
+@foreach(var question in Model.questions)
+{
+    @Html.Partial("_individualQuestion", question)    
+}
+
+<div class="fixed-bottom">
+    <button onclick="checkAnswers(@Model.questions.Count)" href="#" class="btn btn-primary">Check Answers</button>
+</div>
+
+<script>
+
+    function checkAnswers(counter) {
+
+        //if (document.querySelector('.form-check-input' + id + ':checked').value != null)
+        //{
+        //    document.querySelector('.form-check-input' + id + ':checked').checked = "false";
+        //    window.alert("not_null");
+        //}
+
+        var count = counter;
+
+        for(var i = 0; i < @Model.questions.Count; i++)
+        {
+            var checkedValue = document.querySelector('.form-check-input-' + i + ':checked');
+            var uncheckedValue = document.querySelector('.form-check-input-' + i);
+
+            if(checkedValue != null)
+            {
+                checkedValue.checked = true;
+                checkedValue.disabled = true;
+
+
+                if (checkedValue.value == "value") {
+                    checkedValue.parentElement.parentElement.style.backgroundColor = "#DAF7A6";
+
+                }
+                else {
+                    checkedValue.parentElement.parentElement.style.backgroundColor = "#ff5a5f";
+                }
+            }
+            else
+            {
+                uncheckedValue.parentElement.parentElement.style.backgroundColor = "#ff5a5f";
+            }
+
+                
+        }
+    }
+
+</script>
