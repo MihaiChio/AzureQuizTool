@@ -1,0 +1,57 @@
+﻿@model AzureWebLearningTool.Models.User
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="../scss/baseStyling.css"/>
+        <style>
+            #logoHeader{
+                position:absolute;
+            }
+
+            form{
+                width:50%;
+                text-align:center;
+            }
+
+            input{
+                width:20;
+            }
+        </style>
+        <script>
+            function displayIp(ip)
+            {
+                alert(ip);
+            }
+        </script>
+    </head>
+    <div id="container">
+        <div id="formBackground">
+        <div id="logoHeader" style="top:0;">
+            <p>Welcome To</p>
+            <div id="councilLogo">
+            
+            </div>
+        </div>
+            <form method="post" action="@Url.Action("emailCode","Paper")">
+                <div class="form-group">
+                    <label for="emailInput" style="">Code sent to @Model.email<br /> Your IP is @Model.ipAddress</label>
+                    <div class="inputBoxes">
+                    <input type="text" required pattern="[0-9]{1}" size="1" name="email" class="form-control" style="text-align:center" id="emailInput" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                    <small id="emailHelp" class="form-text text-muted"><a href="#">Resend code</a></small>
+                </div>
+                <button type="submit" class="btn btn-primary" style="text-align:center">Submit</button>
+            </form>
+            <div id="logoFooter">
+            <div id="paperLogo">
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <script src ="js/site.js"></script>
+}

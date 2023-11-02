@@ -9,10 +9,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
+<style>
+    body{
+        background-color:red;
+    }
+    .card-body{
+        height:50vh;
+    }
+
+    .progress-bar{
+        border-radius:20px;
+        background-color:green;
+    }
+</style>
+
 <div class="sticky-top">
     <div class="card" style="width: auto;">
         <div class="card-body">
-            <h5 class="card-title">@Model.Text</h5>
+            <h5 class="card-title">@{
+                    @Model.Id
+                }.@Model.Text</h5>
+            @{double percentage = 100.00 / 17.00; double soloPecentage = percentage * Model.Id;}
+            <div class="progress" style="background-color:aliceblue">
+                <div class="progress-bar" role="progressbar" style="width:@soloPecentage%;" aria-valuenow="@soloPecentage" aria-valuemin="0" aria-valuemax="100">@soloPecentage.ToString("0.")%</div>
+            </div>
                 @foreach (Choice choice in Model.Choices)
                 {
                 <div class="form-check-@Model.Id" id="form-@choice.isAnswer">
@@ -22,38 +42,13 @@
                     </label>
                 </div>
                 }
-    
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#explanation-@Model.Id">
-                    Show Explanation
-                </button>
-    
-                <!-- Modal -->
-                <div class="modal fade" id="explanation-@Model.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                ...mm
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
         </div>
     </div>
 </div>
 
 <script>
     function checkFunc(choiceId) {
-        var uncheckedElements = document.getElementsByClassName("form-check-"+choiceId);
+        var uncheckedElements = document.getElementsByClassName("form-check-"+ choiceId);
 
         for(let i = 0; i < uncheckedElements.length; i++)
         {

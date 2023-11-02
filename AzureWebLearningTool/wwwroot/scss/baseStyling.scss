@@ -1,0 +1,78 @@
+$primaryColour: #245AA6;
+$councilLogoUrl:"../img/logo.png?c=myCityCoucil";
+$sDevice:600px;
+$mDevice:768px;
+$lDevice:992px;
+$xlDevice:1200px;
+
+body{
+    background-image:url('../img/spiralPlane.png');
+    background-size:initial;
+}
+
+#formBackground{
+    background-color:ghostwhite;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border-radius: 30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:40vw;
+    height:70vh;
+    box-shadow:0 0 15px #000;
+}
+
+#councilLogo{
+    background-image:url($councilLogoUrl);
+    background-size:cover;
+    background-position:center;
+    position:absolute;
+    min-width:100%;
+    min-height:100%;
+    scale:1.5;
+
+}
+
+#paperLogo{
+    background-image:url('../img/paperfree.png');
+    background-size:cover;
+    background-position:center;
+    width:100%;
+    height:100%;
+}
+
+.btn btn-primary{
+    color:$primaryColour;
+}
+
+@media screen and (max-width:$sDevice)
+{
+    #formBackground{
+        background-color:rgb(82, 82, 82);
+    }
+}
+
+@media screen and (min-width:$sDevice)
+{
+    #formBackground{
+        background-color:red;
+    }
+}
+
+@media screen and (min-width:$mDevice)
+{
+    #formBackground{
+        background-color:green;
+        width:65vw;
+    }
+}
+
+@media screen and (min-width:$lDevice)
+{
+    #formBackground{
+        background-color:rgb(209, 209, 209);
+    }
+}
